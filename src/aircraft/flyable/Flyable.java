@@ -1,4 +1,4 @@
-package aircraft;
+package aircraft.flyable;
 import tower.WeatherTower;
 
 public interface Flyable {

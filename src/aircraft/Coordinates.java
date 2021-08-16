@@ -1,4 +1,4 @@
-package coordinates;
+package aircraft;
 
 public class Coordinates {
   private int longitude;
@@ -8,6 +8,9 @@ public class Coordinates {
   Coordinates(int longitude, int latitude, int height) {
     if (longitude < 0 || latitude < 0 || height < 0) {
       throw new IllegalArgumentException();
+    }
+    if (height > 100) {
+      height = 100;
     }
 
     this.longitude = longitude;
