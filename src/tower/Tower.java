@@ -7,12 +7,22 @@ import aircraft.flyable.Flyable;
 public abstract class Tower {
   private List<Flyable> observers = new ArrayList<Flyable>();
   
+  private void logMessage(String message) {
+    System.out.println("Tower says: " + message);
+  }
+
   public void register(Flyable flyable) {
-    this.observers.add(flyable);
+    boolean isDone = this.observers.add(flyable);
+    if (isDone) {
+      this.logMessage(flyable.getFullName() + " registered to weather tower.");
+    }
   }
 
   public void unregister(Flyable flyable) {
-    this.observers.remove(flyable);
+    boolean isDone = this.observers.remove(flyable);
+    if (isDone) {
+      this.logMessage(flyable.getFullName() + " unregistered from weather tower.");
+    }
   }
 
   protected void conditionsChanged() {
