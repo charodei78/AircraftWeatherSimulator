@@ -3,7 +3,7 @@ package aircraft;
 
 public class Coordinates {
   public final int MAX_HEIGHT = 100; // by TS 
-  public final int MIN_HEIGHT = 100; // by TS 
+  public final int MIN_HEIGHT = 0; // by TS 
   public final int MAX_LATITUDE = 90;
   public final int MAX_LONGITUDE = 180;
 
@@ -81,5 +81,19 @@ public class Coordinates {
 
   public int getHeight() {
     return height;
+  }
+
+  public String toString() {
+    return String.format("Coordinates (Latitude: %s, Longitude: %s, Height: %s )", 
+      latitude,
+      longitude,
+      height);
+  }
+
+  public static Coordinates mock() {
+    int longitude = (int)(Math.random() * 180);
+    int latitude = (int)(Math.random() * 90);
+    int height = (int)(Math.random() * 100);
+    return new Coordinates(latitude, longitude, height);
   }
 }
