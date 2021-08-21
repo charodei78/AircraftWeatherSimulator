@@ -2,7 +2,7 @@ package tower;
 import java.util.ArrayList;
 import java.util.List;
 
-import aircraft.flyable.Flyable;
+import aircraft.Flyable;
 
 public abstract class Tower {
   private List<Flyable> observers = new ArrayList<Flyable>();
@@ -26,8 +26,9 @@ public abstract class Tower {
   }
 
   protected void conditionsChanged() {
-    for (Flyable flyable : observers) {
-      flyable.updateConditions();
+    var it = new ArrayList<Flyable>(observers).listIterator();
+    while (it.hasNext()) {
+      it.next().updateConditions();
     }
   }
 }

@@ -1,12 +1,12 @@
-# Weather simulator for airplanes
-### This is Java training project.
+# Симулятор погоды для самолетов
+### Это тренеровочный проект по Java.
 <hr>
-[RU](./readme.ru.md)
+[EN](./readme.md)
 <hr>
-This project is for learning design patterns. All of the design patterns were known to me at the time of writing. Therefore, this project served as a way to restore my knowledge of Java.
+Этот проект предназначен для изучения паттернов проектирования. На момент написания проекта все паттерны проектирования были мне известны. Поэтому этот проект послужил способом восстановить мои знания по Java.
 <hr>
 
-**Technical specification (main part):**
+**Техническое задание (главная часть):**
 >Frankfurt airport recently discovered that due to frequent weather changes they have a
 bottleneck on some of the landing tracks. In order to find a solution, they first need to
 know which scenarios create the worst bottlenecks.

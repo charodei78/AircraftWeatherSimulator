@@ -1,7 +1,5 @@
-package aircraft.flyable;
+package aircraft;
 
-import aircraft.Aircraft;
-import aircraft.Coordinates;
 import tower.WeatherTower;
 import weather.WeatherEnum;
 
@@ -39,6 +37,7 @@ public class Baloon extends Aircraft implements Flyable {
   }
 
   public void registerTower(WeatherTower weatherTower) {
+    this.weatherTower = weatherTower;
     weatherTower.register(this);
   }  
 }

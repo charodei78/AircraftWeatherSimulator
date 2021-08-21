@@ -9,8 +9,13 @@ import java.util.List;
 import config.exceptions.InvalidAircraftFormatException;
 import config.exceptions.InvalidConfigurationException;
 
+/**
+ * Class that parse and store simulation config
+ */
 public class Config {
-  public final int SimulationsCount;
+  // number of times a weather change is triggered
+  public final int numberOfSimulations;
+  // deserialized aircrafts configurations
   public final AircraftConfig[] aircrafts;
 
   public Config(String configPath) throws IOException, InvalidConfigurationException {
@@ -18,7 +23,7 @@ public class Config {
     List<String> lines = Files.readAllLines(Paths.get(configPath), UTF_8);
     
     try {
-      this.SimulationsCount = Integer.parseInt(lines.get(0));
+      this.numberOfSimulations = Integer.parseInt(lines.get(0));
       lines.remove(0);
       this.aircrafts = parseAircrafts(lines);
     } catch (Exception e) {
@@ -26,6 +31,14 @@ public class Config {
     }
   }
 
+  /**
+   * Function for deserialize aircrafts from list of string 
+   * formatted as "TYPE NAME LONGITUDE LATITUDE HEIGHT"
+   * 
+   * @param lines
+   * @return Deserialized aircrafts
+   * @throws InvalidAircraftFormatException
+   */
   private AircraftConfig[] parseAircrafts(List<String> lines) throws InvalidAircraftFormatException {
     AircraftConfig[] aircrafts = new AircraftConfig[lines.size()];
 
@@ -35,6 +48,14 @@ public class Config {
     return aircrafts;
   }
 
+  /**
+   * Function for deserialize aircraft from string 
+   * formatted as "TYPE NAME LONGITUDE LATITUDE HEIGHT"
+   * 
+   * @param line line for parse
+   * @return Deserialized aircraft
+   * @throws InvalidAircraftFormatException
+   */
   private AircraftConfig parseAircraft(String line) throws InvalidAircraftFormatException {
     String type;
     String name;
@@ -43,7 +64,7 @@ public class Config {
     int height;
 
     String[] args = line.split(" ");
-    if (args.length != 5) {
+    if (args.length != 5 || args[0].length() < 1 || args[1].length() < 1) {
       throw new InvalidAircraftFormatException();
     }
 
@@ -52,8 +73,8 @@ public class Config {
 
     try {
       longitude = Integer.parseInt(args[2]);
-      latitude = Integer.parseInt(args[2]);
-      height = Integer.parseInt(args[2]);
+      latitude = Integer.parseInt(args[3]);
+      height = Integer.parseInt(args[4]);
     } catch (Exception e) {
       throw new InvalidAircraftFormatException();
     }
@@ -61,7 +82,24 @@ public class Config {
     return new AircraftConfig(type, name, longitude, latitude, height);
   }
 
-  private class AircraftConfig {
+  public String toString() {
+    final String nl = System.lineSeparator();
+    String result = String.format(
+    "Number of simulations = %d" + nl + nl +
+    "Aircrafts: " + nl
+    , this.numberOfSimulations);
+
+    for (AircraftConfig aircraft: this.aircrafts) {
+      result += aircraft.toString() + nl + nl;
+    }
+
+    return result;
+  }
+  
+  /**
+   * Class for store aircraft configuration
+   */
+  public class AircraftConfig {
     public final String type;
     public final String name;
     public final int longitude;
@@ -85,18 +123,5 @@ public class Config {
       "latitude: " + latitude + nl +
       "height: " + height;
     }
-  }
-
-  public String toString() {
-    String result = String.format(
-    "Number of simulations = %d\n\n" +
-    "Aircrafts:\n"
-    , this.SimulationsCount);
-
-    for (String aircraft: this.aircrafts) {
-      result += aircraft.toString() + '\n';
-    }
-
-    return result;
   }
 }

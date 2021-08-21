@@ -1,8 +1,10 @@
 package weather;
 
+import java.util.Random;
 import aircraft.Coordinates;
 
 public class WeatherProvider {
+  static final Random rand = new Random();
   private static final WeatherEnum[] weather = WeatherEnum.values();
   private static WeatherProvider weatherProvider;
 
@@ -22,7 +24,7 @@ public class WeatherProvider {
     double snowChance = getSnowChance(coordinates);
 
     double chanceSum = sunChance + rainChance + fogChance + snowChance;
-    double randomWeather = Math.random() * chanceSum;
+    double randomWeather = rand.nextDouble() * chanceSum;
 
     if (randomWeather <= sunChance) {
       return WeatherEnum.SUN;

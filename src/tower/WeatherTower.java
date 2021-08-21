@@ -2,17 +2,20 @@ package tower;
 
 import aircraft.Coordinates;
 import weather.WeatherEnum;
+import weather.WeatherProvider;
 
 public class WeatherTower extends Tower {
   
-  // Я в курсе, что там должен быть String, 
-  // но зачем нам эта неопредёленность
+  // Get weather via coordinates
   public WeatherEnum getWeather(Coordinates coordinates) {
-    // TODO: Implement
-    return WeatherEnum.FOG;
+    return WeatherProvider.getProvider().getCurrentWeather(coordinates);
   }
 
   void changeWeather() {
-    // TODO: Implement
+    conditionsChanged();
+  }
+
+  public void simulateWeather() {
+    changeWeather();
   }
 }

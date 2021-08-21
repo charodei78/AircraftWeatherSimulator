@@ -1,7 +1,7 @@
 package aircraft;
 
 public abstract class Aircraft {
-  private static long idCounter = 0;
+  private static long idCounter = 1;
 
   protected long id;
   protected String name;
@@ -31,7 +31,7 @@ public abstract class Aircraft {
   public String getFullName() {
     return String.format(
       "%s#%s(%d)", 
-      this.getClass().getName(),
+      this.getClass().getSimpleName(),
       this.name,
       this.id
     );

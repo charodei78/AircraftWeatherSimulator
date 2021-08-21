@@ -1,14 +1,12 @@
-package aircraft.flyable;
+package aircraft;
 
-import aircraft.Aircraft;
-import aircraft.Coordinates;
 import tower.WeatherTower;
 import weather.WeatherEnum;
 
-public class JetPlane extends Aircraft implements Flyable{
+public class Helicopter extends Aircraft implements Flyable{
   private WeatherTower weatherTower;
 
-  JetPlane(String name, Coordinates coordinates) {
+  Helicopter(String name, Coordinates coordinates) {
     super(name, coordinates);
   }
 
@@ -17,20 +15,20 @@ public class JetPlane extends Aircraft implements Flyable{
     switch (weather) {
       //  (latitude,  longitude,  height)
       case SUN:
-        this.logMessage("Sun! I'm speeding up!");
-        this.move(10, 0, 2);
+        this.logMessage("Sun! Right in the eye!");
+        this.move(0, 10, 2);
         break;
       case RAIN:
-        this.logMessage("Rain... Drops falling from the sky like bullets.");
-        this.move(5, 0, 0);
+        this.logMessage("Rain! I'm slowing down!");
+        this.move(0, 5, 0);
         break;
       case FOG:
-        this.logMessage("Fog... Really, where am I!");
-        this.move(1, 0, 0);
+        this.logMessage("Fog! Where's the damn hedgehog!");
+        this.move(0, 1, 0);
         break;
       case SNOW:
-        this.logMessage("Happy New Year!");
-        this.move(0, 0, -7);
+        this.logMessage("Snow! The screws are freezing! I'm going down!");
+        this.move(0, 0, -12);
         break;
     };
     if (this.coordinates.getHeight() <= 0) {
@@ -39,6 +37,7 @@ public class JetPlane extends Aircraft implements Flyable{
   }
 
   public void registerTower(WeatherTower weatherTower) {
+    this.weatherTower = weatherTower;
     weatherTower.register(this);
   }  
 }
