@@ -1,10 +1,16 @@
 # Weather simulator for airplanes
-### This is Java training project.
-<hr>
+
+## This is Java training project
+
+---
+
 [RU](./readme.ru.md)
-<hr>
+
+---
+
 This project is for learning design patterns. All of the design patterns were known to me at the time of writing. Therefore, this project served as a way to restore my knowledge of Java.
-<hr>
+
+---
 
 **Technical specification (main part):**
 >Frankfurt airport recently discovered that due to frequent weather changes they have a
@@ -21,6 +27,7 @@ create the simulator.
 >
 >Since the software will run on a multitude of operating systems in a very strict enterprise environement, he decides to use a classic Object-Oriented language: Java.
 He will provide you:
+>
 >- the UML class diagram
 >- the must-have Object Oriented design patterns
 What you need to know in order to be on the team that develops the simulator is:
@@ -39,4 +46,4 @@ city. For this to happen, it will have a clean design, will be easy to read and 
 by your peers and will be easy to change in case the requirements are modified.
 
 **UML class diagram:**
-<img src="./static/uml.png">
+![uml](./static/uml.png)
